@@ -96,6 +96,9 @@
             border-color: #8ab4f8; /* Focus border color */
             box-shadow: 0 0 0 2px #8ab4f8; /* Focus box shadow */
         }
+        #file-input {
+            display: none; /* Hide file input */
+        }
     </style>
 </head>
 <body>
@@ -110,8 +113,9 @@
         <div class="search-bar">
             <input type="text" id="search-input" placeholder="Search Google or type a URL">
             <div class="search-icons">
-                <img src="https://www.gstatic.com/images/branding/product/2x/voice_search_48dp.png" alt="Voice Search" title="Voice Search">
-                <img src="lens.png" alt="Image Search" title="Image Search">
+                <img id="voice-search" src="https://www.gstatic.com/images/branding/product/2x/voice_search_48dp.png" alt="Voice Search" title="Voice Search">
+                <img id="image-search" src="lens.png" alt="Image Search" title="Image Search">
+                <input type="file" id="file-input" accept="image/*">
             </div>
         </div>
         <div class="buttons">
@@ -137,6 +141,40 @@
         document.getElementById('search-input').addEventListener('keypress', (event) => {
             if (event.key === 'Enter') {
                 handleSearch();
+            }
+        });
+
+        // Voice search
+        document.getElementById('voice-search').addEventListener('click', () => {
+            if ('webkitSpeechRecognition' in window) {
+                const recognition = new webkitSpeechRecognition();
+                recognition.lang = 'en-US';
+                recognition.start();
+
+                recognition.onresult = (event) => {
+                    document.getElementById('search-input').value = event.results[0][0].transcript;
+                    handleSearch();
+                };
+
+                recognition.onerror = (event) => {
+                    console.error(event.error);
+                };
+            } else {
+                alert('Voice search is not supported in this browser.');
+            }
+        });
+
+        // Image search
+        document.getElementById('image-search').addEventListener('click', () => {
+            document.getElementById('file-input').click();
+        });
+
+        document.getElementById('file-input').addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                // Normally, you'd upload the file and handle it with a backend service.
+                // For now, we'll just simulate an upload.
+                alert(`File selected: ${file.name}`);
             }
         });
     </script>
