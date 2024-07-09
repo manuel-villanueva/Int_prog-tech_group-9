@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Advanced Search</title>
+    <style>
+        body {
+            background-color: #121212; /* Dark background */
+            color: #e0e0e0; /* Light text color */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav {
+            background-color: #1f1f1f; /* Darker nav background */
+            padding: 10px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .nav a {
+            color: #e0e0e0; /* Light text color */
+            text-decoration: none;
+        }
+
+        .nav a:hover {
+            text-decoration: underline;
+        }
+
+        .advanced-search-container {
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            background-color: #333; /* Dark input background */
+            border: 1px solid #555; /* Border color for inputs */
+            color: #e0e0e0; /* Light text color */
+            border-radius: 5px;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #888; /* Border color on focus */
+        }
+
+        .advanced-search-button {
+            background-color: #3b3b3b; /* Dark button background */
+            color: #e0e0e0; /* Light text color */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .advanced-search-button:hover {
+            background-color: #4c4c4c; /* Lighter on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="index.html">Google Search</a>
+        <a href="image_search.html">Image Search</a>
+    </div>
+    <div class="advanced-search-container">
+        <form action="https://www.google.com/search" method="GET">
+            <div class="input-group">
+                <label for="all">Find pages with all these words:</label>
+                <input type="text" id="all" name="as_q" class="input-field">
+            </div>
+            <div class="input-group">
+                <label for="exact">Find pages with this exact word or phrase:</label>
+                <input type="text" id="exact" name="as_epq" class="input-field">
+            </div>
+            <div class="input-group">
+                <label for="any">Find pages with any of these words:</label>
+                <input type="text" id="any" name="as_oq" class="input-field">
+            </div>
+            <div class="input-group">
+                <label for="none">Find pages with none of these words:</label>
+                <input type="text" id="none" name="as_eq" class="input-field">
+            </div>
+            <input type="submit" value="Advanced Search" class="advanced-search-button">
+        </form>
+    </div>
+</body>
+</html>
